@@ -1,0 +1,22 @@
+title laomaotao2013
+find --set-root --ignore-floppies --ignore-cd /boot/iso/LMT2013.iso
+map /boot/iso/LMT2013.iso (0xff)
+map --hook
+chainloader (0xff)
+boot
+
+title DEEPIN_GHOST_XPSP3_V9F_NTFS[Fixed2]
+find --set-root --ignore-floppies --ignore-cd /boot/iso/DEEPIN_GHOST_XPSP3_V9F_NTFS[Fixed2].iso
+map /boot/iso/DEEPIN_GHOST_XPSP3_V9F_NTFS[Fixed2].iso (0xff)
+map --hook
+chainloader (0xff)
+boot
+
+title Boot from existing os
+find --set-root --ignore-floppies --ignore-cd /ntldr || find --set-root --ignore-floppies --ignore-cd /bootmgr
+map () (hd0)
+map (hd0) ()
+map --rehook
+find --set-root --ignore-floppies --ignore-cd /ntldr || find --set-root --ignore-floppies --ignore-cd /bootmgr
+chainloader /ntldr || chainloader /bootmgr
+
